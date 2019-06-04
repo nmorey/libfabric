@@ -167,7 +167,7 @@ static struct ofi_prov *ofi_create_prov_entry(const char *prov_name)
 static void ofi_ordered_provs_init(void)
 {
 	char *ordered_prov_names[] =
-			{"psm2", "psm", "usnic", "mlx", "gni",
+		{"psm2", "psm", "efa", "usnic", "mlx", "gni",
 			 "bgq", "netdir", "ofi_rxm", "ofi_rxd", "verbs",
 			/* Initialize the socket(s) provider last.  This will result in
 			 * it being the least preferred provider. */
@@ -501,6 +501,7 @@ libdl_done:
 	ofi_register_provider(SHM_INIT, NULL);
 	ofi_register_provider(RXM_INIT, NULL);
 	ofi_register_provider(VERBS_INIT, NULL);
+	ofi_register_provider(EFA_INIT, NULL);
 
 	{
 		/* TODO: RXD is not stable for now. Disable it by default */
