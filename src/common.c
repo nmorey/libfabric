@@ -435,7 +435,7 @@ sa_sin6:
 		size = snprintf(buf, *len, "fi_addr_bgq://%p", addr);
 		break;
 	case FI_ADDR_OPX:
-		size = snprintf(buf, *len, "fi_addr_opx://%016lx", *(uint64_t *)addr);
+		size = snprintf(buf, *len, "fi_addr_opx://%016llx", *(uint64_t *)addr);
 		break;
 	case FI_ADDR_MLX:
 		size = snprintf(buf, *len, "fi_addr_mlx://%p", addr);
