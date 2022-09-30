@@ -193,7 +193,7 @@ m4_version_prereq([2.70],
 dnl Check for compiler features
 AC_C_TYPEOF
 
-LT_INIT
+LT_INIT([disable-static])
 LT_OUTPUT
 
 dnl dlopen support is optional
