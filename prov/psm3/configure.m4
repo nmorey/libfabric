@@ -125,49 +125,7 @@ AC_DEFUN([FI_PSM3_CONFIGURE],[
             ],[
                 psm3_happy=0
                 AC_MSG_RESULT([no])
-                AC_MSG_NOTICE([psm3 requires minimum of avx instruction set to build])
-            ])
-        CFLAGS=$save_CFLAGS
-
-        AC_MSG_CHECKING([for -mavx support])
-        save_CFLAGS=$CFLAGS
-        CFLAGS="$PSM3_STRIP_OPTFLAGS -mavx -O0"
-        AC_LINK_IFELSE(
-            [AC_LANG_PROGRAM(
-                [[#include <immintrin.h>]],
-                [[unsigned long long _a[4] = {1ULL,2ULL,3ULL,4ULL};
-                  __m256i vA = _mm256_loadu_si256((__m256i *)_a);
-                  __m256i vB;
-                  _mm256_store_si256(&vB, vA);
-                  return 0;]])
-            ],[
-                AC_MSG_RESULT([yes])
-                PSM3_ARCH_CFLAGS="-mavx"
-                PSM3_MARCH="avx"
-            ],[
-                psm3_happy=0
-                AC_MSG_RESULT([no])
-                AC_MSG_NOTICE([psm3 requires minimum of avx instruction set to build])
-            ])
-        CFLAGS=$save_CFLAGS
-
-        AC_MSG_CHECKING([for -mavx2 support])
-        save_CFLAGS=$CFLAGS
-        CFLAGS="$PSM3_STRIP_OPTFLAGS -mavx2 -O0"
-        AC_LINK_IFELSE(
-            [AC_LANG_PROGRAM(
-                [[#include <immintrin.h>]],
-                [[unsigned long long _a[4] = {1ULL,2ULL,3ULL,4ULL};
-                  __m256i vA = _mm256_loadu_si256((__m256i *)_a);
-                  __m256i vB = _mm256_add_epi64(vA, vA);
-                  (void)vB;
-                  return 0;]])
-            ],[
-                AC_MSG_RESULT([yes])
-                PSM3_ARCH_CFLAGS="-mavx2"
-                PSM3_MARCH="avx2"
-            ],[
-                AC_MSG_RESULT([no])
+                AC_MSG_NOTICE([psm3 requires minimum of SSE4.2 instruction set to build])
             ])
         CFLAGS=$save_CFLAGS
 

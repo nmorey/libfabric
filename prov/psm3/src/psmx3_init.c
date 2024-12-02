@@ -685,10 +685,8 @@ static int psmx3_getinfo(uint32_t api_version, const char *node,
 		PSMX3_INFO(&psmx3_prov, FI_LOG_CORE,
 			"CPU does not support '%s'.\n", PSM3_MARCH);
 		OFI_INFO_STR(&psmx3_prov,
-			(__builtin_cpu_supports("avx2") ? "AVX2" :
-				(__builtin_cpu_supports("avx") ? "AVX" :
-					(__builtin_cpu_supports("sse4.2") ? "SSE4.2" : "unknown"))),
-			PSM3_MARCH, "CPU Supports", "PSM3 Built With");
+			     __builtin_cpu_supports("sse4.2") ? "SSE4.2" : "unknown",
+			     PSM3_MARCH, "CPU Supports", "PSM3 Built With");
 		goto err_out;
 	}
 
